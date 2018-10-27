@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Route::get('miPrimeraRuta', function(){
@@ -28,5 +28,11 @@ Route::get('resultado/{numero}/{opcional?}', function($numero, $opcional = null)
     
 });
 
-Route::get('movies/{id}', 'MoviesController@searchMovieId');
+Route::get('movies', 'MoviesController@index')->name('listado_peliculas');
+Route::get('movies/create', 'MoviesController@agregarPelicula');
+Route::get('movies/{id}', 'MoviesController@show');
+
 Route::get('/movies/search/{title}', 'MoviesController@searchMovieByTitle');
+
+Route::get('home', 'HomeController@home');
+Route::get('productos', 'HomeController@productos');

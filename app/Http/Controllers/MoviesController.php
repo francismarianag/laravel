@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movie;
 
     
 class MoviesController extends Controller
@@ -20,8 +21,13 @@ class MoviesController extends Controller
         8 => "La Pistola Desnuda 33 1/3"
     ];
 
-    public function searchMovieId($id){
-        return $this->movies[$id];
+    public function show($id){
+        if ($id < 9 && $id >= 1) {
+            // return $this->movies[$id];
+            return view ('movies.movie')->with('movies', $this->movies[$id]);
+            
+        }
+         return view ('movies.movie');
         
     }
 
@@ -32,5 +38,14 @@ class MoviesController extends Controller
             }
         }
         
+    }
+
+    public function index(){
+        return view ('movies.movies')->with('movies', $this->movies);
+    }
+
+    public function agregarPelicula()
+    {
+        return view ('movies.create');
     }
 }
